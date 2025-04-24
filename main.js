@@ -4,17 +4,29 @@ var letterContent ="Gửi Mia, Anh viết những dòng này với tất cả s�
 // Tốc độ viết chữ. Số càng nhỏ tốc độ càng nhanh. 50 là tốc độ khá phù hợp
 durationWrite = 50 
 
+// Store timeouts to clear them later
+let writeTimeouts = [];
+
 // Hiệu ứng gõ chữ
 
 function effectWrite () {
-    var boxLetter = document.querySelector(".letterContent")
-    letterContentSplited = letterContent.split("")
-    
+    var boxLetter = document.querySelector(".letterContent");
+    letterContentSplited = letterContent.split("");
+
+    // Clear any existing content before writing
+    boxLetter.innerHTML = "";
+
+    // Clear previous timeouts
+    writeTimeouts.forEach(timeout => clearTimeout(timeout));
+    writeTimeouts = [];
+
+    // Add new timeouts for writing text
     letterContentSplited.forEach((val, index) => {
-        setTimeout(() => {
-            boxLetter.innerHTML += val    
-        }, durationWrite* index)
-    })
+        const timeout = setTimeout(() => {
+            boxLetter.innerHTML += val;    
+        }, durationWrite * index);
+        writeTimeouts.push(timeout);
+    });
 }
 
 window.addEventListener("load", () => {
@@ -38,13 +50,16 @@ openBtn.addEventListener("click", () => {
 var cardValentine = document.querySelector(".cardValentine")
 
 cardValentine.addEventListener("click", () => {
-    cardValentine.classList.toggle("open")
+    cardValentine.classList.toggle("open");
 
-    if(cardValentine.className.indexOf("open") != -1) {
-        setTimeout(effectWrite, 500)
+    if (cardValentine.className.indexOf("open") != -1) {
+        setTimeout(effectWrite, 500);
     } else {
+        // Clear timeouts and reset text when closing the card
+        writeTimeouts.forEach(timeout => clearTimeout(timeout));
+        writeTimeouts = [];
         setTimeout(() => {
-            document.querySelector(".letterContent").innerHTML = ""
-        }, 1000)
+            document.querySelector(".letterContent").innerHTML = "";
+        }, 1000);
     }
-})
+});
