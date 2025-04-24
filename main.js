@@ -6,27 +6,25 @@ durationWrite = 50
 
 // Store timeouts to clear them later
 let writeTimeouts = [];
+let currentIndex = 0; // Track the current index of the text
 
 // Hiệu ứng gõ chữ
-
-function effectWrite () {
+function effectWrite() {
     var boxLetter = document.querySelector(".letterContent");
     letterContentSplited = letterContent.split("");
-
-    // Clear any existing content before writing
-    boxLetter.innerHTML = "";
 
     // Clear previous timeouts
     writeTimeouts.forEach(timeout => clearTimeout(timeout));
     writeTimeouts = [];
 
-    // Add new timeouts for writing text
-    letterContentSplited.forEach((val, index) => {
+    // Add new timeouts for writing text starting from the current index
+    for (let i = currentIndex; i < letterContentSplited.length; i++) {
         const timeout = setTimeout(() => {
-            boxLetter.innerHTML += val;    
-        }, durationWrite * index);
+            boxLetter.innerHTML += letterContentSplited[i];
+            currentIndex = i + 1; // Update the current index
+        }, durationWrite * (i - currentIndex));
         writeTimeouts.push(timeout);
-    });
+    }
 }
 
 window.addEventListener("load", () => {
@@ -41,25 +39,34 @@ window.addEventListener("load", () => {
     }, { once: true }); // Only allows the audio to play once on first click
 })
 
-var openBtn = document.querySelector(".openBtn")
+var openBtn = document.querySelector(".openBtn");
 openBtn.addEventListener("click", () => {
-    document.querySelector(".cardValentine").classList.add("active")
-    document.querySelector(".container").classList.add("close")
-})
+    const cardValentine = document.querySelector(".cardValentine");
+    const container = document.querySelector(".container");
 
-var cardValentine = document.querySelector(".cardValentine")
+    // Activate the card and close the container
+    cardValentine.classList.add("active");
+    container.classList.add("close");
+
+    // Reset text and index when reopening the card
+    document.querySelector(".letterContent").innerHTML = "";
+    currentIndex = 0;
+
+    // Start the text animation when the card is opened
+    setTimeout(effectWrite, 500);
+});
+
+var cardValentine = document.querySelector(".cardValentine");
 
 cardValentine.addEventListener("click", () => {
     cardValentine.classList.toggle("open");
 
-    if (cardValentine.className.indexOf("open") != -1) {
+    if (cardValentine.classList.contains("open")) {
+        // Start the text animation when the card is opened
         setTimeout(effectWrite, 500);
     } else {
-        // Clear timeouts and reset text when closing the card
+        // Clear timeouts and pause text when closing the card
         writeTimeouts.forEach(timeout => clearTimeout(timeout));
         writeTimeouts = [];
-        setTimeout(() => {
-            document.querySelector(".letterContent").innerHTML = "";
-        }, 1000);
     }
 });
