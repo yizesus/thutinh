@@ -1,4 +1,53 @@
-* {
+/* Default styles for the card */
+.cardValentine {
+    position: absolute;
+    top: 200%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    height: 600px; /* Default height */
+    width: 800px; /* Default width */
+    background-color: transparent;
+    transition: 0.5s;
+}
+
+.cardValentine.active {
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    height: 600px;
+    width: 800px;
+    background-color: transparent;
+    transition: 0.5s;
+}
+
+/* Responsive styles for iPhone screens */
+@media screen and (max-width: 768px) {
+    .cardValentine {
+        height: 400px; /* Reduce height for smaller screens */
+        width: 90%; /* Use 90% of the screen width */
+    }
+
+    .left, .right {
+        width: 100%; /* Make left and right sections full width */
+        height: 50%; /* Adjust height to fit smaller card */
+    }
+
+    .rightContent {
+        font-size: 0.8rem; /* Reduce font size for text */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .leftFront, .leftBack {
+        width: 100%; /* Ensure the front and back fit */
+        height: 100%; /* Adjust height */
+    }
+
+    .des {
+        font-size: 0.9rem; /* Adjust description font size */
+    }
+}* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,12 +59,25 @@ html, body {
     width: 100%;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+}
+
 .container {
     position: relative;
     height: 100%;
     width: 100%;
     background-color: #fc6885;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .paperHeart {
@@ -339,46 +401,35 @@ html, body {
     
 }
 
+/* Default styles for the card */
 .cardValentine {
     position: absolute;
     top: 200%;
     left: 50%;
     opacity: 0;
     transform: translate(-50%, -50%);
-    height: 600px;
-    width: 800px;
+    height: 600px; /* Default height */
+    width: 400px; /* Default width */
     background-color: transparent;
-    transition: .5;
+    transition: 0.5s;
 }
 
 .cardValentine.active {
-    position: absolute;
     top: 50%;
     left: 50%;
     opacity: 1;
     transform: translate(-50%, -50%);
     height: 600px;
-    width: 800px;
+    width: 700px;
     background-color: transparent;
-    transition: .5;
-    animation: animateCard 2s ease-in-out forwards;
-}
-
-@keyframes animateCard {
-    from {
-        top: 200%;
-    }
-
-    to {
-        top: 50%;
-    }
+    transition: 0.5s;
 }
 
 .cardValentine .left {
     z-index: 2;
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 25%;
     height: 100%;
     width: 50%;
     border-radius: 10px;
@@ -492,7 +543,7 @@ html, body {
     z-index: 1;
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 25%;
     height: 100%;
     width: 50%;
     background-color: #f35553;
@@ -504,13 +555,14 @@ html, body {
     transition: .5s;
 }
 
+/* General styles for the letter content */
 .rightContent {
-    font-size: 20px;
+    font-size: 1.2rem; /* Default font size */
+    padding: 20px; /* Default padding */
     height: 95%;
     width: 90%;
     background-color: wheat;
     border-radius: 5px;
-    padding: 20px 15px;
     overflow: auto;
 }
 
@@ -608,5 +660,51 @@ html, body {
 
     100% {
         top: 50%;
+    }
+}
+
+/* Responsive styles for iPhone screens */
+@media screen and (max-width: 768px) {
+    .boxTitle {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .paperHeart {
+        width: 50px;
+        height: 50px;
+    }
+
+    .btnBox {
+        margin-top: 20px;
+    }
+
+    .openBtn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .cardValentine {
+        height: 200px; /* Reduce height for smaller screens */
+        width: 90%; /* Use 90% of the screen width */
+    }
+
+    .left, .right {
+        width: 50%; /* Make left and right sections full width */
+        height: 50%; /* Adjust height to fit smaller card */
+    }
+
+    .rightContent {
+        font-size: 0.8rem; /* Reduce font size for text */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .leftFront, .leftBack {
+        width: 100%; /* Ensure the front and back fit */
+        height: 100%; /* Adjust height */
+    }
+
+    .des {
+        font-size: 0.9rem; /* Adjust description font size */
     }
 }

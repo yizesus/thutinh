@@ -21,6 +21,10 @@ window.addEventListener("load", () => {
     setTimeout(() => {
         document.querySelector(".container").classList.add("active")
     }, 500)
+	const audio = document.getElementById("myAudio");
+	audio.play().catch(e => {
+	console.log("Autoplay failed. Waiting for user interaction.");
+	});
 })
 
 var openBtn = document.querySelector(".openBtn")

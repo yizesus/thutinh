@@ -16,19 +16,10 @@
 </head>
 
 <body>
-	<audio id="myAudio" autoplay>
+	<audio id="myAudio">
 	  <source src="background.mp3" type="audio/mpeg">
 	  Your browser does not support the audio element.
 	</audio>
-
-	<script>
-	  window.addEventListener('load', () => {
-		const audio = document.getElementById("myAudio");
-		audio.play().catch(e => {
-		  console.log("Autoplay failed. Waiting for user interaction.");
-		});
-	  });
-	</script>
 	
     <div class="container">
         <img class="paperHeart paperHeart1" style="--time: 0s" src="./img/paperHeart.webp" alt="">
@@ -50,7 +41,7 @@
 
             <div class="btnBox">
                 <div class="cloudBtn"></div>
-                <button class="openBtn">Chạm vào đây đii bấy bii</button>
+                <button class="openBtn" onclick="playAudio()">Chạm vào đây đii bấy bii</button>
             </div>
         </div>
 
