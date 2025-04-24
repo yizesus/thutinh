@@ -59,25 +59,12 @@ html, body {
     width: 100%;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-    overflow-x: hidden;
-}
-
 .container {
     position: relative;
     height: 100%;
     width: 100%;
     background-color: #fc6885;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
 }
 
 .paperHeart {
@@ -300,10 +287,10 @@ body {
     font-family: "Open Sans";
     font-weight: 400;
     font-style: normal;
-    font-size: 120px;
+    font-size: 40px;
     color: pink;
     height: fit-content;
-    width: fit-content;
+    width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -376,7 +363,7 @@ body {
     font-family: "Rubik Glitch Pop", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 40px;
+    font-size: 30px;
     color: #fc6885;
     background-color: transparent;
     border: none;
@@ -401,20 +388,20 @@ body {
     
 }
 
-/* Default styles for the card */
 .cardValentine {
     position: absolute;
     top: 200%;
     left: 50%;
     opacity: 0;
-    transform: translate(-50%, -50%);
-    height: 600px; /* Default height */
-    width: 400px; /* Default width */
+    transform: translate(-50%,2-50%);
+    height: 600;
+    width: 800;
     background-color: transparent;
-    transition: 0.5s;
+    transition: .5;
 }
 
 .cardValentine.active {
+    position: absolute;
     top: 50%;
     left: 50%;
     opacity: 1;
@@ -422,7 +409,18 @@ body {
     height: 600px;
     width: 700px;
     background-color: transparent;
-    transition: 0.5s;
+    transition: .5;
+    animation: animateCard 2s ease-in-out forwards;
+}
+
+@keyframes animateCard {
+    from {
+        top: 200%;
+    }
+
+    to {
+        top: 50%;
+    }
 }
 
 .cardValentine .left {
@@ -555,14 +553,13 @@ body {
     transition: .5s;
 }
 
-/* General styles for the letter content */
 .rightContent {
-    font-size: 1.2rem; /* Default font size */
-    padding: 20px; /* Default padding */
+    font-size: 20px;
     height: 95%;
     width: 90%;
     background-color: wheat;
     border-radius: 5px;
+    padding: 20px 15px;
     overflow: auto;
 }
 
@@ -660,51 +657,5 @@ body {
 
     100% {
         top: 50%;
-    }
-}
-
-/* Responsive styles for iPhone screens */
-@media screen and (max-width: 768px) {
-    .boxTitle {
-        text-align: center;
-        font-size: 1.5rem;
-    }
-
-    .paperHeart {
-        width: 50px;
-        height: 50px;
-    }
-
-    .btnBox {
-        margin-top: 20px;
-    }
-
-    .openBtn {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-
-    .cardValentine {
-        height: 200px; /* Reduce height for smaller screens */
-        width: 90%; /* Use 90% of the screen width */
-    }
-
-    .left, .right {
-        width: 50%; /* Make left and right sections full width */
-        height: 50%; /* Adjust height to fit smaller card */
-    }
-
-    .rightContent {
-        font-size: 0.8rem; /* Reduce font size for text */
-        padding: 10px; /* Reduce padding */
-    }
-
-    .leftFront, .leftBack {
-        width: 100%; /* Ensure the front and back fit */
-        height: 100%; /* Adjust height */
-    }
-
-    .des {
-        font-size: 0.9rem; /* Adjust description font size */
     }
 }
